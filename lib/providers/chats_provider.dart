@@ -5,12 +5,23 @@ import 'package:chat_app_2/services/auth_service.dart';
 
 class ChatsProvider with ChangeNotifier {
   List<dynamic> _chats = [];
+  List<dynamic> _singleChatMessages=[];
   List get chats => _chats;
+  List get singleChatMessages => _singleChatMessages;
 
   Future<void>getchats()async{
     _chats=await ChatsService.getChats();
+    notifyListeners();
   }
 
+  Future<void>sendMessage(String receiverId,String text)async{
+    await ChatsService.sendMessage(receiverId, text);
+  }
+
+  Future<void>addMessage(dynamic message)async{
+    singleChatMessages.add(message);
+    notifyListeners();
+  }
 
 
 }

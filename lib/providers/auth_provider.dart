@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:chat_app_2/services/auth_service.dart';
+import 'package:chat_app_2/utils/retreive_token.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+
 
 class AuthProvider with ChangeNotifier {
-  bool _isAuthenticated = true;
+  bool _isAuthenticated = false;
+  String _authUserId='';
   final LocalStorage storage = LocalStorage('my_app_storage');
   // Public getter
   bool get isAuthenticated => _isAuthenticated;
+  String get authUserId => _authUserId;
 
   // Toggle method
   void toggle() {
@@ -35,6 +40,16 @@ class AuthProvider with ChangeNotifier {
 
     notifyListeners();
   }
+
+  Future<void> setAuthUserId()async{
+    final LocalStorage storage = LocalStorage('my_app_storage');
+    await storage.ready;
+    final token = await storage.getItem('token');
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+    _authUserId=decodedToken['_id'];
+    notifyListeners();
+  }
+
 
 
 

@@ -3,8 +3,10 @@ import 'package:chat_app_2/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app_2/screens/main_screen.dart';
 import 'package:chat_app_2/providers/chats_provider.dart';
+import 'package:chat_app_2/services/socket_service.dart';
 
 void main() {
+  SocketService().initSocket();
   runApp(
     MultiProvider(
       providers: [
@@ -13,6 +15,7 @@ void main() {
       ],
       child: MyApp(),
     ),
+
   );
 }
 
