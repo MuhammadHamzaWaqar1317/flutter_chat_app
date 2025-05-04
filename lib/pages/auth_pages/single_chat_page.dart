@@ -27,7 +27,7 @@ class _SingleChatPageState extends State<SingleChatPage> {
 
     final chatsProvider = Provider.of<ChatsProvider>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-
+    chatsProvider.getChatMessages(widget.receiverId);
     socketService.on('send_new_message', (data) {
 
       bool senderSideCondition = data['senderId'] == authProvider.authUserId &&

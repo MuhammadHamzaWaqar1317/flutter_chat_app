@@ -18,8 +18,13 @@ class ChatsProvider with ChangeNotifier {
     await ChatsService.sendMessage(receiverId, text);
   }
 
+  Future<void>getChatMessages(String receiverId)async{
+    _singleChatMessages=await ChatsService.getChatMessages(receiverId);
+    notifyListeners();
+  }
+
   Future<void>addMessage(dynamic message)async{
-    singleChatMessages.add(message);
+    _singleChatMessages=[..._singleChatMessages,message];
     notifyListeners();
   }
 

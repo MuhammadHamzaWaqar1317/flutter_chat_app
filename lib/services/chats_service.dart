@@ -18,6 +18,22 @@ class ChatsService {
     }
   }
 
+  static Future<dynamic> getChatMessages(String receiverId) async {
+    final token = await RetreiveToken.getAuthTokenHeader();
+    final response = await http.get(
+        Uri.parse('http://localhost:3000/authenticated/user/message?receiverId=$receiverId'),
+        headers: {...token});
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> resData = jsonDecode(response.body);
+      final List<dynamic> chatMessages = resData['chatMessages'];
+      //
+      return chatMessages;
+    } else {
+      throw Exception('Failed to Fetch');
+    }
+  }
+
   static Future<void> sendMessage(String receiverId, String text) async {
     final token = await RetreiveToken.getAuthTokenHeader();
     final response = await http.post(
