@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:chat_app_2/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app_2/screens/main_screen.dart';
+import 'package:chat_app_2/providers/chats_provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ChatsProvider()),
       ],
       child: MyApp(),
     ),

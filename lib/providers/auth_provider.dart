@@ -3,7 +3,7 @@ import 'package:localstorage/localstorage.dart';
 import 'package:chat_app_2/services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier {
-  bool _isAuthenticated = false;
+  bool _isAuthenticated = true;
   final LocalStorage storage = LocalStorage('my_app_storage');
   // Public getter
   bool get isAuthenticated => _isAuthenticated;
