@@ -1,4 +1,5 @@
 import 'package:chat_app_2/pages/auth_pages/chats_page.dart';
+import 'package:chat_app_2/pages/auth_pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -12,10 +13,10 @@ class _AuthScreenState extends State<AuthScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    ChatsPage(),
-    Text('Index 1: Business', style: optionStyle),
-    Text('Index 2: School', style: optionStyle),
+  static List<Widget> _widgetOptions = <Widget>[
+    const ChatsPage(),
+    const Text('Index 1: Business', style: optionStyle),
+    const ProfilePage()
   ];
 
   void _onItemTapped(int index) {

@@ -8,10 +8,14 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 class AuthProvider with ChangeNotifier {
   bool _isAuthenticated = false;
   String _authUserId='';
+  String _authUserName='';
+  String _authUserEmail='';
   final LocalStorage storage = LocalStorage('my_app_storage');
   // Public getter
   bool get isAuthenticated => _isAuthenticated;
   String get authUserId => _authUserId;
+  String get authUserName => _authUserName;
+  String get authUserEmail => _authUserEmail;
 
   // Toggle method
   void toggle() {
@@ -41,12 +45,25 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> logout()async{
+    await storage.setItem('token', '');
+    _isAuthenticated=false;
+    notifyListeners();
+  }
+
   Future<void> setAuthUserId()async{
     final LocalStorage storage = LocalStorage('my_app_storage');
     await storage.ready;
     final token = await storage.getItem('token');
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
     _authUserId=decodedToken['_id'];
+    notifyListeners();
+  }
+
+  Future<void> setAuthUserInfo()async{
+   var userData= await AuthService.getUserInfo();
+   _authUserName=userData['name'];
+   _authUserEmail=userData['email'];
     notifyListeners();
   }
 
