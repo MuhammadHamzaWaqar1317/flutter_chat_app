@@ -23,7 +23,7 @@ class _SingleChatPageState extends State<SingleChatPage> {
   void initState() {
     super.initState();
     final socketService = SocketService();
-    socketService.initSocket();
+    // socketService.initSocket();
 
     final chatsProvider = Provider.of<ChatsProvider>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
@@ -38,6 +38,11 @@ class _SingleChatPageState extends State<SingleChatPage> {
       if (senderSideCondition || receiverSideCondition) {
         chatsProvider.addMessage(data);
       }
+    });
+
+    socketService.on('message_deleted', (data) {
+      chatsProvider.deleteMessage(data['messageId']);
+      print('deleted Msg ID $data');
     });
   }
 

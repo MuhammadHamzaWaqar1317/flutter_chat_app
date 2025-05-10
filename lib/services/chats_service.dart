@@ -34,6 +34,19 @@ class ChatsService {
     }
   }
 
+  static Future<void> deleteMessage(String messageId) async {
+    final token = await RetreiveToken.getAuthTokenHeader();
+    final response = await http.delete(
+        Uri.parse('http://localhost:3000/authenticated/user/message?messageId=$messageId'),
+        headers: {...token});
+
+    if (response.statusCode == 200) {
+
+    } else {
+      throw Exception('Failed to Fetch');
+    }
+  }
+
   static Future<void> sendMessage(String receiverId, String text) async {
     final token = await RetreiveToken.getAuthTokenHeader();
     final response = await http.post(
