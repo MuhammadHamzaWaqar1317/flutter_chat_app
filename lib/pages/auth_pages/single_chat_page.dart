@@ -47,6 +47,15 @@ class _SingleChatPageState extends State<SingleChatPage> {
   }
 
   @override
+  void dispose() {
+    // Remove listeners when the page is disposed
+    final socketService = SocketService();
+    socketService.socket.off('send_new_message');
+    socketService.socket.off('message_deleted');
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Navbar(title: widget.receiverName),

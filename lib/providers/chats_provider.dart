@@ -29,7 +29,6 @@ class ChatsProvider with ChangeNotifier {
   }
 
   Future<void>deleteMessage(String messageId)async{
-    print("assdasadadssad");
     _singleChatMessages.removeWhere((chat) => chat['_id'] == messageId);
     print(_singleChatMessages);
     notifyListeners();
