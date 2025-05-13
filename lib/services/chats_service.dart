@@ -27,7 +27,7 @@ class ChatsService {
     if (response.statusCode == 200) {
       final Map<String, dynamic> resData = jsonDecode(response.body);
       final List<dynamic> chatMessages = resData['chatMessages'];
-      //
+
       return chatMessages;
     } else {
       throw Exception('Failed to Fetch');
@@ -54,10 +54,7 @@ class ChatsService {
         body: {"receiverId": receiverId, "text": text},
         headers: {...token});
     if (response.statusCode == 200) {
-      // final Map<String, dynamic> resData = jsonDecode(response.body);
-      // final List<dynamic> chats = resData['chats'];
-      //
-      // return chats;
+
     } else {
       throw Exception('Failed to Fetch');
     }

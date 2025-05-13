@@ -1,4 +1,3 @@
-import 'package:chat_app_2/pages/unauth_pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app_2/providers/auth_provider.dart';
 import 'package:provider/provider.dart';

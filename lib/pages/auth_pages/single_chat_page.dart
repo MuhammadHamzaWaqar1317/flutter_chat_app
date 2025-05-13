@@ -5,7 +5,6 @@ import 'package:chat_app_2/services/socket_service.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app_2/providers/chats_provider.dart';
 import 'package:chat_app_2/providers/auth_provider.dart';
-import 'package:chat_app_2/utils/retreive_token.dart';
 import 'package:chat_app_2/widgets/chat_bubble_widget.dart';
 
 class SingleChatPage extends StatefulWidget {
@@ -23,7 +22,6 @@ class _SingleChatPageState extends State<SingleChatPage> {
   void initState() {
     super.initState();
     final socketService = SocketService();
-    // socketService.initSocket();
 
     final chatsProvider = Provider.of<ChatsProvider>(context, listen: false);
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
@@ -48,7 +46,6 @@ class _SingleChatPageState extends State<SingleChatPage> {
 
   @override
   void dispose() {
-    // Remove listeners when the page is disposed
     final socketService = SocketService();
     socketService.socket.off('send_new_message');
     socketService.socket.off('message_deleted');

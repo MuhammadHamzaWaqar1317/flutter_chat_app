@@ -47,16 +47,16 @@ class _ChatsPageState extends State<ChatsPage> {
                   padding: const EdgeInsets.all(8),
                   itemCount: chats.chats.length,
                   itemBuilder: (BuildContext context, int index) {
-                    print(chats.chats[index]);
                     final receiverId = chats.chats[index]['_id'];
                     final name = chats.chats[index]['name'];
+                    final firstCharName=name[0].toUpperCase();
                     return GestureDetector(
                       onTap: () => _openChat(receiverId, name),
                       child: ListTile(
-                        leading: CircleAvatar(child: Text('H')),
+                        leading: CircleAvatar(child: Text(firstCharName)),
                         title: Text(name),
                         subtitle: Text('Longer supporting text .'),
-                        trailing: Icon(Icons.favorite_rounded),
+                        trailing: Icon(Icons.chevron_right),
 
                       ),
                     );

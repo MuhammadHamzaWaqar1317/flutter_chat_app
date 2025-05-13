@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:chat_app_2/services/auth_service.dart';
-import 'package:chat_app_2/utils/retreive_token.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 
 class AuthProvider with ChangeNotifier {
-  bool _isAuthenticated = false;
+  bool _isAuthenticated = true;
   String _authUserId='';
   String _authUserName='';
   String _authUserEmail='';
   final LocalStorage storage = LocalStorage('my_app_storage');
-  // Public getter
+
   bool get isAuthenticated => _isAuthenticated;
   String get authUserId => _authUserId;
   String get authUserName => _authUserName;
   String get authUserEmail => _authUserEmail;
 
-  // Toggle method
   void toggle() {
     _isAuthenticated = !_isAuthenticated;
     notifyListeners();

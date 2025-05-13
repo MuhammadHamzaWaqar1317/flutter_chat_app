@@ -1,6 +1,4 @@
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:provider/provider.dart';
-import 'package:chat_app_2/providers/chats_provider.dart';
 
 class SocketService {
   static final SocketService _instance = SocketService._internal();
@@ -23,7 +21,6 @@ class SocketService {
 
     socket.onConnect((_) {
       print('Socket connected');
-      // socket.emit('connection'); // Register user with backend
     });
 
     socket.onDisconnect((_) => print('Socket disconnected'));
